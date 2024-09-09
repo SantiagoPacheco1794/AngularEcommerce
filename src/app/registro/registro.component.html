@@ -1,0 +1,82 @@
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <!-- Nombre -->
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input
+        id="nombre"
+        name="nombre"
+        [(ngModel)]="user.nombre"
+        required
+        #nombre="ngModel"
+      />
+      <div *ngIf="nombre.invalid && nombre.touched">
+        El nombre es obligatorio.
+      </div>
+    </div>
+  
+    <!-- Apellido -->
+    <div>
+      <label for="apellido">Apellido:</label>
+      <input
+        id="apellido"
+        name="apellido"
+        [(ngModel)]="user.apellido"
+        required
+        #apellido="ngModel"
+      />
+      <div *ngIf="apellido.invalid && apellido.touched">
+        El apellido es obligatorio.
+      </div>
+    </div>
+  
+    <!-- Teléfono -->
+    <div>
+      <label for="telefono">Teléfono:</label>
+      <input
+        id="telefono"
+        name="telefono"
+        [(ngModel)]="user.telefono"
+        #telefono="ngModel"
+      />
+    </div>
+  
+    <!-- Email -->
+    <div>
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        [(ngModel)]="user.email"
+        required
+        #email="ngModel"
+      />
+      <div *ngIf="email.invalid && email.touched">
+        Ingresa un email válido.
+      </div>
+    </div>
+  
+    <!-- Password -->
+    <div>
+      <label for="password">Password:</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        [(ngModel)]="user.password"
+        required
+        minlength="6"
+        maxlength="10"
+        #password="ngModel"
+      />
+      <div *ngIf="password.invalid && password.touched">
+        La contraseña debe tener entre 6 y 10 caracteres.
+      </div>
+    </div>
+  
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="registerForm.invalid">
+      Registrar
+    </button>
+  </form>
+  

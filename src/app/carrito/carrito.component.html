@@ -1,0 +1,56 @@
+<div class="outer-container">
+  <div class="layout-container">
+    <!-- Product List Container -->
+    <div class="product-list-container">
+      <h2>Lista de Productos</h2>
+      <div *ngFor="let item of cartItems" class="product-card">
+        <img [src]="item.product.thumbnail" alt="{{ item.product.title }}" class="thumbnail" />
+        <div class="product-info">
+          <h3>{{ item.product.title }}</h3>
+          <div class="quantity-container">
+            <label for="quantity">Cantidad:</label>
+            <input type="number" [(ngModel)]="item.quantity" min="1" (change)="updateCartSummary()" />
+            <div class="current-quantity">Actual: {{ item.product.initial_quantity }}</div>
+          </div>
+          <div class="price">{{ item.product.price | number:'1.2-2':'es-AR' }}</div>
+          <div class="item-cart__actions">
+            <button (click)="removeFromCart(item.product.id)" class="cancel-link">Eliminar</button>
+            <button (click)="saveForLater(item)" class="link">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Summary Container -->
+    <div class="cart-summary">
+      <h2>Resumen de Compra</h2>
+      <p>Productos: ${{ cartSummary.totalPrice | number:'1.2-2':'es-AR' }}</p>
+      <p>Envío: ${{ shippingCost }}</p>
+      <p>Total (con Envío): ${{ totalAmount | number:'1.2-2':'es-AR' }}</p>
+      <button (click)="openPaymentModal()" class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <!-- Payment Modal -->
+<app-payment-modal *ngIf="isModalOpen"
+                   (close)="closePaymentModal()"
+                   (payConfirmed)="completePurchase()"></app-payment-modal>
+
+  <!-- Saved Items Section -->
+  <div *ngIf="savedItems.length > 0" class="saved-items-container">
+    <h2>Productos Guardados</h2>
+    <div *ngFor="let savedItem of savedItems" class="saved-product-card">
+      <img [src]="savedItem.product.thumbnail" alt="{{ savedItem.product.title }}" class="thumbnail" />
+      <div class="saved-product-info">
+        <h3>{{ savedItem.product.title }}</h3>
+        <div class="quantity-container">
+          <label>Guardado</label>
+        </div>
+        <div class="item-cart__actions">
+          <button (click)="addToCartFromSaved(savedItem)" class="link">Agregar al carrito</button>
+          <button (click)="removeFromSaved(savedItem.product.id)" class="cancel-link">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

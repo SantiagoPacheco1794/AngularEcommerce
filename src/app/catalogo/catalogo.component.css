@@ -1,0 +1,41 @@
+/* home.component.css */
+
+/* Grey Background Outer Container */
+.outer-grey-container {
+  background-color: rgba(0, 0, 0, 0.1); /* Light grey background */
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Centers the inner content horizontally */
+}
+
+/* Inner Content Container to keep the product list centered */
+.inner-content-container {
+  background-color: #fff; /* White background for inner content */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+}
+
+/* Product List Styles */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Product Card Styles */
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 200px;
+  background-color: #f8f8f8; /* Optional: Slight background for product card */
+}
+
+/* Product Card Image Styles */
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}

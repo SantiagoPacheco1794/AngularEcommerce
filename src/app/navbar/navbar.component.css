@@ -1,0 +1,48 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #F3C178;
+  color: white;
+  font-family: Proxima Nova, -apple-system, Roboto, Arial, sans-serif;
+}
+
+/* Logo or Brand on the Left */
+.navbar-logo {
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px; /* Adjust as needed */
+  margin-right: auto; /* Aligns other items to the right */
+}
+
+/* Links on the Right */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+/* Individual Links */
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ddd;
+}
+
+.navbar-cart {
+  height: 37.5px; /* Adjust as needed */
+  margin-right: auto; /* Aligns other items to the right */
+  padding-top: 4px;
+}
+
+.navbar-phone {
+  height: 45px; /* Adjust as needed */
+  width: 45px;
+  margin-right: auto; /* Aligns other items to the right */
+}

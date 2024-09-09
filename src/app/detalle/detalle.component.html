@@ -1,0 +1,79 @@
+<div class="background-container">
+  <div *ngIf="productDetail; else noDetail">
+    <!-- Outer Container with White Background -->
+    <div class="outer-container">
+      <!-- Container for the image list, main image, and product details -->
+      <div class="layout-container">
+        <!-- Main Image Container -->
+        <div class="main-image-container">
+          <!-- Image Selector Inside Main Image Container -->
+          <div class="image-list">
+            <div class="image-selector">
+              <div *ngFor="let picture of productDetail.pictures.slice(0, maxVisibleImages)" (click)="selectImage(picture)" class="thumbnail">
+                <img [src]="picture.url" [alt]="picture.id" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Image Display -->
+          <div class="main-image">
+            <img [src]="selectedImage?.secure_url || productDetail.pictures[0]?.secure_url" [alt]="selectedImage?.id || productDetail.pictures[0]?.id" />
+          </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="product-details">
+          <h2>Detalle del Producto</h2>
+          <p><strong>Producto:</strong> {{ productDetail.title }}</p>
+          <p><strong>Precio:</strong> ${{ productDetail.price }}</p>
+
+          <!-- Stock Information and Quantity Input -->
+          <div *ngIf="productDetail.initial_quantity > 0" class="stock-info">
+            <label for="quantityInput">Stock Disponible:</label>
+            <div class="stock-info-content">
+              <input type="number" id="quantityInput" [(ngModel)]="desiredQuantity" min="1" max="{{ productDetail.initial_quantity }}" />
+              <span class="stock-quantity">({{ productDetail.initial_quantity }} disponibles)</span>
+            </div>
+          </div>
+           <!-- Add this to the product-details section -->
+      <div class="add-to-cart">
+        <button class="add-to-cart-btn" (click)="addToCart()">Agregar al carrito</button>
+      </div>
+        </div>
+      </div>
+
+      <!-- Characteristics Sections -->
+      <div class="attributes-container">
+        <!-- General Characteristics Section -->
+        <div class="section">
+          <h3>Características generales</h3>
+          <table>
+            <tbody>
+              <tr *ngFor="let attribute of productDetail.attributes.slice(0, 10)">
+                <td><strong>{{ attribute.name }}:</strong></td>
+                <td>{{ attribute.value_name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Usage Section -->
+        <div class="section">
+          <h3>Otras Características</h3>
+          <table>
+            <tbody>
+              <tr *ngFor="let attribute of productDetail.attributes.slice(10, 20)">
+                <td><strong>{{ attribute.name }}:</strong></td>
+                <td>{{ attribute.value_name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noDetail>
+    <p>No se encontraron detalles del producto.</p>
+  </ng-template>
+</div>
